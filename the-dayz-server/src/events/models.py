@@ -14,11 +14,12 @@ from markdown_deux import markdown
 # MVC MODEL VIEW CONTROLLER
 
 class Event(models.Model):
-    date = models.DateField(null=False)
+    date = models.DateField()
+    is_lunar = models.BooleanField(default=False)
     title = models.CharField(max_length=120)
     type = models.CharField(max_length=30)
     summary = models.TextField(null=True)
-    content = models.TextField()
+    content = models.TextField(blank=True)
     image_url = models.CharField(max_length=100, null=True)
 
     def __str__(self):

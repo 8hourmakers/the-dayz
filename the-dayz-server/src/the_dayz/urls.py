@@ -26,15 +26,15 @@ from accounts.views import (login_view, register_view, logout_view)
 
 urlpatterns = [
     
-    url(r'^the_dayz/admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
 
-    url(r'^the_dayz/register/', register_view, name='register'),
-    url(r'^the_dayz/login/', login_view, name='login'),
-    url(r'^the_dayz/logout/', logout_view, name='logout'),
+    url(r'^register/', register_view, name='register'),
+    url(r'^login/', login_view, name='login'),
+    url(r'^logout/', logout_view, name='logout'),
 
-    url(r'^the_dayz/api/auth/token/', obtain_jwt_token),
-    url(r'^the_dayz/api/events/', include('events.api.urls', namespace='events-api')),
-    url(r'^the_dayz/api/users/', include("accounts.api.urls", namespace='users-api'))
+    url(r'^api/auth/token/', obtain_jwt_token),
+    url(r'^api/events/', include('events.api.urls', namespace='events-api')),
+    url(r'^api/users/', include("accounts.api.urls", namespace='users-api'))
 ]
 
 

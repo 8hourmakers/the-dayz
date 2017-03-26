@@ -47,13 +47,12 @@ class EventListAPIView(ListCreateAPIView):
     serializer_class = EventListSerializer
     permission_classes = [AllowAny]
 
+
     def get_queryset(self, *args, **kwargs):
         queryset_list = Event.objects.all()
         month_q = self.request.GET.get("month")
         date_q = self.request.GET.get('date')
         type_q = self.request.GET.get('type')
-
-
 
         if month_q:
             queryset_list = queryset_list.filter(date__month=month_q)

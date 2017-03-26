@@ -1,0 +1,25 @@
+.HomeToday {
+  display: block;
+}
+
+.HomeToday__title {
+  display: block;
+  margin: 0 0 8px 0;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.HomeToday__date {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 120px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000;
+}
+
+.HomeToday__date > span {
+  display: block;
+}

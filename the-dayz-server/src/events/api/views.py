@@ -1,6 +1,6 @@
 from django.db.models import Q
-from datetime import datetime
-
+from datetime import datetime, timedelta
+from rest_framework.views import APIView
 from rest_framework.filters import (
         SearchFilter,
         OrderingFilter,
@@ -42,6 +42,40 @@ class EventDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     permission_classes = [AllowAny]
 
+
+class EventNearDetailAPIView(APIView):
+    serializer_class = EventDetailSerializer
+    queryset = Event.objects.all()
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        result_event = None
+        queryset_list = Event.objects.all().order_by('month', 'day')
+
+        today = datetime.today() + timedelta(hours=9)
+        if len(queryset_list) == 0:
+            # 행사가 없을 경우
+            return Response(status=404)
+
+        month_equal_query = queryset_list.filter(month=today.month)
+        if len(month_equal_query) != 0:
+            # 같은 달에 이벤트가 있을 때
+            day_gte_query = month_equal_query.filter(day__gte=today.day)
+            # day로 오늘 이후 행사
+            if len(day_gte_query) != 0:
+                # 오늘 이후 행사가 있을 경우
+                result_event = day_gte_query[0]
+        if result_event is None:
+            month_gte_query = queryset_list.filter(month__gt=today.month)
+            if len(month_gte_query) !=0:
+                # 이번달 이후 행사가 있을 경우
+                result_event = month_gte_query[0]
+        if result_event is None:
+            # 올해 더 이상 행사가 없을 경우, 연초의 행사 반환
+            result_event = queryset_list[0]
+
+        serializer = EventDetailSerializer(result_event)
+        return Response(serializer.data)
 
 class EventListAPIView(ListCreateAPIView):
     serializer_class = EventListSerializer

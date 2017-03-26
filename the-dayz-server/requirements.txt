@@ -7,6 +7,7 @@ django-suit==0.2.24
 djangorestframework==3.3.3
 djangorestframework-jwt==1.8.0
 docutils==0.13.1
+lunardate==0.1.5
 markdown2==2.3.1
 olefile==0.44
 packaging==16.8

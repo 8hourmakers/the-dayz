@@ -1,0 +1,92 @@
+.DayDetail__type {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.DayDetail__content {
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(199, 196, 181, .5);
+}
+
+.DayDetail__contentInner {
+  display: block;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.DayDetail__type > label {
+  display: inline-block;
+  height: 28px;
+  padding: 0 .15em 0 .5em;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: .5em;
+  line-height: 28px;
+  color: #ffffff;
+  background-color: #6F59D3;
+}
+
+.DayDetail__date {
+  display: block;
+  margin: 0 0 6px 0;
+  color: #231F20;
+}
+
+.DayDetail__date > span {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.DayDetail__date > label {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.DayDetail__title {
+  display: block;
+  margin: 0 0 30px 0;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #6F59D3;
+}
+
+.DayDetail__tags {
+  display: flex;
+  padding-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.DayDetail__tags > span {
+  display: inline-block;
+  margin: 0 8px 6px 0;
+  padding: 0 10px;
+  height: 26px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #00C5A1;
+  border: 1px solid #00C5A1;
+  border-radius: 13px;
+}
+
+.DayDetail__description {
+  display: block;
+  margin: 0 auto;
+  max-width: 768px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #231F20;
+}
+
+@media screen and (max-width: 768px) {
+  .DayDetail__description {
+    padding: 0 16px;
+  }
+}

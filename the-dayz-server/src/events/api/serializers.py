@@ -13,6 +13,7 @@ class EventDetailSerializer(ModelSerializer):
     class Meta:
         model = Event
         fields = [
+            'id',
             'date',
             'title',
             'type',
@@ -28,6 +29,7 @@ class EventListSerializer(ModelSerializer):
     class Meta:
         model = Event
         fields = [
+            'id',
             'date',
             'title',
             'type',

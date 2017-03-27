@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MomentModule } from 'angular2-moment';
 
 import { HomeComponent } from './home.component';
 import { HomeTodayComponent } from './home-today.component';
+import { EventsService } from './events.service';
 
 @NgModule({
   declarations: [
@@ -10,8 +12,11 @@ import { HomeTodayComponent } from './home-today.component';
     HomeTodayComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MomentModule
   ],
-  providers: []
+  providers: [
+    EventsService
+  ]
 })
 export class HomeModule { }

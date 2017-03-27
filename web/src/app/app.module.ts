@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing';
+import { appRoutingProvders, AppRoutingModule } from './app.routing';
 
 import { DayDetailModule } from './day-detail/day-detail.module';
 import { HomeModule } from './home/home.module';
@@ -21,7 +21,9 @@ import { HomeModule } from './home/home.module';
     DayDetailModule,
     HomeModule
   ],
-  providers: [],
+  providers: [
+    appRoutingProvders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

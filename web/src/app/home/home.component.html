@@ -2,17 +2,15 @@
   <app-home-today class="Home__today"></app-home-today>
 
   <section class="Home__event">
-    <a class="Home__eventGoDetail">
-      <span>식목일 (04.05)</span>
+    <a [routerLink]="['/day-detail/', todayEvent.id]" class="Home__eventGoDetail">
+      <span>{{todayEvent.title}} ({{todayEvent.date | date:'MM.dd'}})</span>
 
-      <div class="Home__eventLeft">
-        <b>4</b>일 남았습니다.
+      <div *ngIf="hasDayLeft" class="Home__eventLeft">
+        <b>{{dayLeft}}</b>일 남았습니다.
       </div>
 
       <img src="/assets/icons/arrow.png" />
     </a>
-
-
   </section>
 
 </div>

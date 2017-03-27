@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import { logger } from '../../utils/logger';
 
 @Injectable()
-export class EventsService {
+export class TodayEventService {
   private baseUrl = '/api';
 
   constructor(private http: Http) {}
@@ -30,9 +30,9 @@ export class EventsService {
     return Observable.throw(errMsg);
   }
 
-  getEvents() {
+  getTodayEvent() {
     return this.http
-      .get(`${this.baseUrl}/events/`)
+      .get(`${this.baseUrl}/events/near/`)
       .map(this.extractData)
       .catch(this.handleError);
   }

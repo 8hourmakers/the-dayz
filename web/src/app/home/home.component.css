@@ -42,6 +42,7 @@
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .Home__eventGoDetail:hover {

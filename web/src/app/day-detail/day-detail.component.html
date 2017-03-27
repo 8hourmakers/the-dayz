@@ -1,32 +1,32 @@
 <div class="DayDetail">
-  <div class="DayDetail__head"></div>
+  <div class="DayDetail__head">
+    <button [routerLink]="['/']" class="DayDetail__backBtn">
+      <img src="/assets/icons/cancel.png" />
+    </button>
+  </div>
 
   <article class="DayDetail__content">
 
     <div class="DayDetail__contentInner">
       <div class="DayDetail__type">
-        <label>공휴일</label>
+        <label>{{data.type}}</label>
       </div>
 
       <h3 class="DayDetail__date">
-        <span>5.14</span>
-        <label>(음력 4월 8일)</label>
+        <span>{{data.date | date:'MM.dd'}}</span>
+        <label *ngIf="data.is_lunar">(음력 4월 8일)</label>
       </h3>
-      <h1 class="DayDetail__title">석가탄신일</h1>
-
-      <div class="DayDetail__tags">
-        <span>#부처님오신날</span>
-        <span>#공휴일</span>
-        <span>#연둥</span>
-        <span>#연꽃축제</span>
-      </div>
+      <h1 class="DayDetail__title">{{data.title}}</h1>
     </div>
 
   </article>
 
   <div class="DayDetail__description">
     <p>
-      초파일(初八日)이라고도 한다. 석가는 BC 624년 4월 8일(음력) 해뜰 무렵 북인도 카필라 왕국(지금의 네팔 지방)의 왕 슈도다나(Śuddhodāna)와 마야(Māyā)부인 사이에서 태어났다. 경(經)과 논(論)에 석가가 태어난 날을 2월 8일 또는 4월 8일로 적고 있으나, 자월(子月:지금의 음력 11월)을 정월로 치던 때의 4월 8일은 곧 인월(寅月:지금의 정월)을 정월로 치는 2월 8일이므로 원래는 음력 2월 8일이 맞다. 그러나 불교의 종주국인 인도 등지에서는 예로부터 음력 4월 8일을 석가의 탄일로 기념하여 왔고, 한국에서도 음력 4월 초파일을 석가탄신일로 보고 기념하며 1975년 1월 27일 대통령령으로 공휴일로 지정하였다.
+      {{data.summary}}
+    </p>
+    <p>
+      {{data.content}}
     </p>
   </div>
 </div>

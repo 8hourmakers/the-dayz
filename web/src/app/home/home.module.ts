@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MomentModule } from 'angular2-moment';
 
 import { HomeComponent } from './home.component';
 import { HomeTodayComponent } from './home-today.component';
@@ -12,8 +11,7 @@ import { EventsService } from './events.service';
     HomeTodayComponent
   ],
   imports: [
-    CommonModule,
-    MomentModule
+    CommonModule
   ],
   providers: [
     EventsService

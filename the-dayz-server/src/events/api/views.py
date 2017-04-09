@@ -17,7 +17,7 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView
     )
 
-
+from lunardate import LunarDate
 from rest_framework.response import Response
 
 from rest_framework.permissions import (
@@ -84,21 +84,32 @@ class EventListAPIView(ListCreateAPIView):
 
     def get_queryset(self, *args, **kwargs):
         queryset_list = Event.objects.all()
+        year_q = self.request.GET.get("year")
         month_q = self.request.GET.get("month")
-        date_q = self.request.GET.get('date')
         type_q = self.request.GET.get('type')
 
-        if month_q and month_q != 'null':
-            queryset_list = queryset_list.filter(date__month=month_q)
-        if date_q and date_q != 'null':
-            date_q_filter = datetime.strptime(date_q, '%m-%d')
-            queryset_list = queryset_list.filter(
-                Q(date__month=date_q_filter.month)&
-                Q(date__day=date_q_filter.day)
-            )
+        if year_q and year_q != 'null':
+            try:
+                year_q = int(year_q)
+            except:
+                year_q = datetime.now().year
+        else:
+            year_q = datetime.now().year
+
         if type_q and type_q != 'null':
             queryset_list = queryset_list.filter(type=type_q)
 
+        if month_q and month_q != 'null':
+            month_q = int(month_q)
+            filtered_queryset_list = []
+            for each_query in queryset_list:
+                if each_query.is_lunar:
+                    date = LunarDate(year_q, each_query.origin_date.month, each_query.origin_date.day).toSolarDate()
+                else:
+                    date = each_query.origin_date
+                if date.month == month_q:
+                    filtered_queryset_list.append(each_query)
+            return filtered_queryset_list
         return queryset_list
 
 

@@ -88,15 +88,15 @@ class EventListAPIView(ListCreateAPIView):
         date_q = self.request.GET.get('date')
         type_q = self.request.GET.get('type')
 
-        if month_q:
+        if month_q and month_q != 'null':
             queryset_list = queryset_list.filter(date__month=month_q)
-        if date_q:
+        if date_q and date_q != 'null':
             date_q_filter = datetime.strptime(date_q, '%m-%d')
             queryset_list = queryset_list.filter(
                 Q(date__month=date_q_filter.month)&
                 Q(date__day=date_q_filter.day)
             )
-        if type_q:
+        if type_q and type_q != 'null':
             queryset_list = queryset_list.filter(type=type_q)
 
         return queryset_list

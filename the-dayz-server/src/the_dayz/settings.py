@@ -65,7 +65,7 @@ MIDDLEWARE_CLASSES = [
 
 LOGIN_URL = "/login/"
 ROOT_URLCONF = 'the_dayz.urls'
-
+APPEND_SLASH = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

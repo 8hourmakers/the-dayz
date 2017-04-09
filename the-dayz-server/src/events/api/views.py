@@ -43,6 +43,16 @@ class EventDetailAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = [AllowAny]
 
 
+def filter_month(seq, value):
+    return [el for el in seq if el['month'] == value]
+
+def filter_gte_month(seq, value):
+    return [el for el in seq if el['month'] >= value]
+
+def filter_gte_day(seq, value):
+    return [el for el in seq if el['day'] >= value]
+
+
 class EventNearDetailAPIView(APIView):
     serializer_class = EventDetailSerializer
     queryset = Event.objects.all()
@@ -50,31 +60,38 @@ class EventNearDetailAPIView(APIView):
 
     def get(self, request):
         result_event = None
-        queryset_list = Event.objects.all().order_by('month', 'day')
+        queryset_list = Event.objects.all()
 
         today = datetime.today() + timedelta(hours=9)
         if len(queryset_list) == 0:
             # 행사가 없을 경우
             return Response(status=404)
 
-        month_equal_query = queryset_list.filter(month=today.month)
+        converted_list = []
+        for each_query in queryset_list:
+            if each_query.is_lunar:
+                date = LunarDate(today.year, each_query.origin_date.month, each_query.origin_date.day).toSolarDate()
+            else:
+                date = each_query.origin_date
+            converted_list.append({
+                'month': date.month,
+                'day': date.day,
+                'event': each_query
+            })
+        month_equal_query = filter_month(converted_list, today.month)
         if len(month_equal_query) != 0:
-            # 같은 달에 이벤트가 있을 때
-            day_gte_query = month_equal_query.filter(day__gte=today.day)
-            # day로 오늘 이후 행사
+            day_gte_query = filter_gte_day(month_equal_query, today.day)
             if len(day_gte_query) != 0:
-                # 오늘 이후 행사가 있을 경우
                 result_event = day_gte_query[0]
         if result_event is None:
-            month_gte_query = queryset_list.filter(month__gt=today.month)
+            month_gte_query = filter_gte_month(converted_list, today.month)
             if len(month_gte_query) !=0:
-                # 이번달 이후 행사가 있을 경우
                 result_event = month_gte_query[0]
-        if result_event is None:
-            # 올해 더 이상 행사가 없을 경우, 연초의 행사 반환
-            result_event = queryset_list[0]
 
-        serializer = EventDetailSerializer(result_event)
+        if result_event is None:
+            result_event = converted_list[0]
+
+        serializer = EventDetailSerializer(result_event['event'], context={'request': request})
         return Response(serializer.data)
 
 class EventListAPIView(ListCreateAPIView):

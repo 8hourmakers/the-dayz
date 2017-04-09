@@ -4,13 +4,13 @@ from django.contrib import admin
 from .models import Event
 
 class EventModelAdmin(admin.ModelAdmin):
-    list_display = ["title", "date", "type", "summary", "content", "image_url", "is_lunar"]
+    list_display = ["title", "origin_date", "type", "summary", "content", "image_url", "is_lunar"]
     list_display_links = ["title"]
     list_editable = ["summary", "content"]
-    list_filter = ["date", "type"]
-    ordering = ('-date',)
+    list_filter = ["origin_date", "type"]
+    ordering = ('-origin_date',)
 
-    search_fields = ["date", "title"]
+    search_fields = ["origin_date", "title"]
 
     class Meta:
         model = Event

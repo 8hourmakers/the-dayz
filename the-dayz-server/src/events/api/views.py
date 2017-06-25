@@ -46,8 +46,8 @@ class EventDetailAPIView(RetrieveUpdateDestroyAPIView):
 def filter_month(seq, value):
     return [el for el in seq if el['month'] == value]
 
-def filter_gte_month(seq, value):
-    return [el for el in seq if el['month'] >= value]
+def filter_gt_month(seq, value):
+    return [el for el in seq if el['month'] > value]
 
 def filter_gte_day(seq, value):
     return [el for el in seq if el['day'] >= value]
@@ -84,7 +84,7 @@ class EventNearDetailAPIView(APIView):
             if len(day_gte_query) != 0:
                 result_event = day_gte_query[0]
         if result_event is None:
-            month_gte_query = filter_gte_month(converted_list, today.month)
+            month_gte_query = filter_gt_month(converted_list, today.month)
             if len(month_gte_query) !=0:
                 result_event = month_gte_query[0]
 

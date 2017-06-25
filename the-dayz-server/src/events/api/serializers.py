@@ -47,6 +47,40 @@ class EventDetailSerializer(ModelSerializer):
     def get_origin_date(self, obj):
         return obj.origin_date.strftime("%m-%d")
 
+class EventNearSerializer(ModelSerializer):
+
+    date = SerializerMethodField()
+
+    class Meta:
+        model = Event
+        fields = [
+            'id',
+            'date',
+            'title',
+            'type',
+            'is_lunar',
+            'summary',
+            'image_url',
+            'content'
+        ]
+
+    def get_date(self, obj):
+        year = self.context.get('request').GET.get('year')
+        is_lunar = obj.is_lunar
+
+        try:
+            year = int(year)
+        except:
+            year = datetime.now().year
+
+        if is_lunar:
+            if not year or year == 'null' or (year < 1900 or year >= 2050):
+                year = datetime.now().year
+            date = LunarDate(year, obj.origin_date.month, obj.origin_date.day).toSolarDate()
+        else:
+            date = obj.origin_date
+        return date.strftime("%m-%d")
+
 
 class EventListSerializer(ModelSerializer):
 

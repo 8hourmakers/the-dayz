@@ -92,7 +92,7 @@ class EventNearDetailAPIView(APIView):
         if result_event is None:
             result_event = converted_list[0]
 
-        serializer = EventDetailSerializer(result_event['event'], context={'request': request})
+        serializer = EventNearSerializer(result_event['event'], context={'request': request})
         return Response(serializer.data)
 
 class EventListAPIView(ListCreateAPIView):

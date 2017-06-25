@@ -1,0 +1,12 @@
+<div class="Timeline">
+    <button ng-click="$ctrl.goBack()" class="Timeline__backBtn">
+        <img src="/assets/icons/cancel.png" />
+    </button>
+
+    <div class="Timeline__calendar">
+        <app-calendar events="$ctrl.eventList"
+                      favorites="$ctrl.favoriteDates"
+                      on-click-event="$ctrl.showDetail(event)"
+                      on-navigate="$ctrl.fetchEvents(year, month)"></app-calendar>
+    </div>
+</div>

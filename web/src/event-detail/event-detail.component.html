@@ -1,0 +1,31 @@
+<div class="DayDetail">
+    <div class="DayDetail__head">
+        <button ng-click="$ctrl.backToHome()" class="DayDetail__backBtn">
+            <img src="/assets/icons/cancel.png" />
+        </button>
+
+        <button ng-click="$ctrl.toggleFavorite()" class="DayDetail__favoriteBtn">
+            <img ng-if="!$ctrl.isFavorite" src="/assets/icons/bookmark_line.png" />
+            <img ng-if="$ctrl.isFavorite" src="/assets/icons/bookmark_full.png" />
+        </button>
+    </div>
+
+    <article class="DayDetail__content">
+        <div class="DayDetail__contentInner">
+            <div class="DayDetail__type">
+                <label ng-bind="$ctrl.data.type"></label>
+            </div>
+
+            <h3 class="DayDetail__date">
+                <span ng-bind="$ctrl.data.date | date:'MM.dd'"></span>
+            </h3>
+            <h1 ng-bind="$ctrl.data.title" class="DayDetail__title"></h1>
+        </div>
+    </article>
+
+    <div class="DayDetail__description">
+        <p ng-bind="$ctrl.data.summary">
+        </p>
+        <p ng-bind="$ctrl.data.content"></p>
+    </div>
+</div>

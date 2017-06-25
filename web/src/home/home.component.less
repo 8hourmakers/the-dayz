@@ -1,0 +1,129 @@
+.Home {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.Home__today {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 36px;
+}
+
+.Home__bookmark {
+    position: relative;
+    display: block;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, .35);
+    border-top-right-radius: 40px;
+}
+
+.Home__bookmark:after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    border-style: solid;
+    border-width: 0 40px 40px 0;
+    border-color: #ddd transparent;
+}
+
+.Home__event {
+    display: block;
+}
+
+.Home__eventGoDetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.Home__eventGoDetail:hover {
+    opacity: .5;
+}
+
+.Home__eventGoDetail > span {
+    flex: 1;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.35;
+    color: #231F20;
+    margin-bottom: 6px;
+}
+
+.Home__eventGoDetail > img {
+    width: 20px;
+}
+
+.Home__eventLeft {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #9a9a9a;
+}
+
+.Home__eventLeft > b {
+    font-weight: 700;
+    color: #00C5A1;
+}
+
+.HomeToday {
+    display: block;
+}
+
+.HomeToday__title {
+    display: block;
+    margin: 0 0 8px 0;
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1;
+}
+
+.HomeToday__date {
+    display: block;
+    width: 100%;
+    margin: 0 auto 16px auto;
+    font-size: 120px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+}
+
+.Home__calendar {
+    position: absolute;
+    display: inline-flex;
+    top: 8px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    padding: 2px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: 0;
+
+    &:hover {
+        opacity: .85;
+    }
+
+    & > img {
+        flex: 1;
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.HomeToday__date > span {
+    display: block;
+}

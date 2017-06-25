@@ -1,0 +1,25 @@
+<div class="Home">
+    <button ng-click="$ctrl.showCalendar()" class="Home__calendar">
+        <img src="/assets/icons/calendar.png" />
+    </button>
+
+    <div class="HomeToday">
+        <h2 class="HomeToday__title">TODAY</h2>
+        <section class="HomeToday__date">
+            <span>{{ $ctrl.todayEvent.date | date:'MM' }}</span>
+            <span>{{ $ctrl.todayEvent.date | date:'dd' }}</span>
+        </section>
+    </div>
+
+    <section class="Home__event">
+        <a ng-click="$ctrl.showDetail()" class="Home__eventGoDetail">
+            <span>{{ $ctrl.todayEvent.title}} ({{ $ctrl.todayEvent.date | date:'MM.dd' }})</span>
+
+            <div ng-if="$ctrl.hasDayLeft" class="Home__eventLeft">
+                <b>{{ $ctrl.dayLeft }}</b>일 남았습니다.
+            </div>
+
+            <img src="/assets/icons/arrow.png" />
+        </a>
+    </section>
+</div>

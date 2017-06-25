@@ -32,7 +32,8 @@ from events.models import Event
 
 from .serializers import (
     EventListSerializer,
-    EventDetailSerializer
+    EventDetailSerializer,
+    EventNearSerializer
     )
 
 from django.shortcuts import get_object_or_404
@@ -54,7 +55,7 @@ def filter_gte_day(seq, value):
 
 
 class EventNearDetailAPIView(APIView):
-    serializer_class = EventDetailSerializer
+    serializer_class = EventNearSerializer
     queryset = Event.objects.all()
     permission_classes = [AllowAny]
 
